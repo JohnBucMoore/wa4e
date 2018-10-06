@@ -8,7 +8,7 @@ the original pre hash text was a four-number PIN string with
 exactly four numbers.
 
 So the application uses four nested loops and tests all 
-10*10*10*10 combinations of four numbers, and computes the
+10 * 10 * 10 * 10 combinations of four numbers, and computes the
 hashes of those values and checks to see if the computed hash
 matches.
 
