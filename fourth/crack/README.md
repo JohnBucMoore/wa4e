@@ -12,7 +12,8 @@ So the application uses four nested loops and tests all
 hashes of those values and checks to see if the computed hash
 matches.
 
-You can play with this application at:
+You can play with a similar application using a two-character key
+of lowercase letters a-z at:
 
 http://www.wa4e.com/code/crack
 
