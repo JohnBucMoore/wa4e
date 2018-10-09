@@ -14,7 +14,7 @@
 Attempt to go to 
 <a href="autos.php">autos.php</a> without logging in - it should fail with an error message.
 <p>
-<a href="https://github.com/JohnBucMoore/wa4e/tree/master/fifth/rps"
+<a href="https://github.com/JohnBucMoore/wa4e/tree/master/autosdb"
  target="_blank">Source Code for this Application</a>
 </p>
 </div>
