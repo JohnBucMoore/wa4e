@@ -13,7 +13,7 @@ if ( isset($_POST['logout']) ) {
 }
 
 $failure = false;  // If we have no POST data
-
+$success = false;
 // POST data into autos table and process that input
 if ( isset($_POST['make']) && isset($_POST['year']) && isset($_POST['mileage'])) {
     if ( strlen($_POST['make']) < 1) {
@@ -22,14 +22,13 @@ if ( isset($_POST['make']) && isset($_POST['year']) && isset($_POST['mileage']))
     } elseif (!is_numeric($_POST['year']) || !is_numeric($_POST['mileage'])) {
         $failure = "Mileage and year must be numeric";
     } else {
-        $sql = "INSERT INTO autos (make, year, mileage) 
-                  VALUES (:make, :year, :mileage)";
-        echo("<pre>\n".$sql."\n</pre>\n");
-        $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->prepare('INSERT INTO autos
+        (make, year, mileage) VALUES ( :mk, :yr, :mi)');
         $stmt->execute(array(
-            ':make' => $_POST['make'],
-            ':year' => $_POST['year'],
-            ':mileage' => $_POST['mileage']));
+        ':mk' => $_POST['make'],
+        ':yr' => $_POST['year'],
+        ':mi' => $_POST['mileage'])
+    );  $success = "Record inserted";
     }
 }
 // DELETE data from autos table
@@ -56,6 +55,15 @@ if ( isset($_REQUEST['name']) ) {
     echo htmlentities($_REQUEST['name']);
 }
 ?></h1>
+<?php
+// Note triple not equals and think how badly double
+// not equals would work here...
+if ( $failure !== false || $success !== false) {
+    // Look closely at the use of single and double quotes
+    echo('<p style="color: red;">'.htmlentities($failure)."</p>\n");
+    echo('<p style="color: green;">'.htmlentities($success)."</p>\n");
+}
+?>
 <form method="post">
 <p>Make:
 <input type="text" name="make" size="60"/></p>
