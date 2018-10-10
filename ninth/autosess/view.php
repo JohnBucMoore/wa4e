@@ -19,8 +19,8 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 <div class="container">
 <h1>Tracking Autos for <?php
-if ( isset($_REQUEST['email']) ) {
-    echo htmlentities($_REQUEST['email']);
+if ( isset($_SESSION['email']) ) {
+    echo htmlentities($_SESSION['email']);
 }
 ?></h1>
 <p>
