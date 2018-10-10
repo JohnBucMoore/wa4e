@@ -18,11 +18,13 @@ $mileage = '';
 if ( isset($_POST['add']) && isset($_POST['make']) && isset($_POST['year']) && isset($_POST['mileage'])) {
     if ( strlen($_POST['make']) < 1) {
         $_SESSION['error'] = "Make is required";
+        error_log("Data entry failure ".$_SESSION['error']);
         header("Location: add.php");
         return;
       // Verify that the email address is formatted. if input is not formatted correctly then print string, else do the next function.
     } elseif (!is_numeric($_POST['year']) || !is_numeric($_POST['mileage'])) {
         $_SESSION['error'] = "Mileage and year must be numeric";
+        error_log("Data entry failure ".$_SESSION['error']);
         header("Location: add.php");
         return;
     } else {
@@ -49,8 +51,8 @@ if ( isset($_POST['add']) && isset($_POST['make']) && isset($_POST['year']) && i
 <body>
 <div class="container">
 <h1>Tracking Autos for <?php
-if ( isset($_REQUEST['name']) ) {
-    echo htmlentities($_REQUEST['name']);
+if ( isset($_SESSION['email']) ) {
+    echo htmlentities($_SESSION['email']);
 }
 ?></h1>
 <p>
