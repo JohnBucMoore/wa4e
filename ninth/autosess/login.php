@@ -18,10 +18,12 @@ if ( isset($_POST['email']) && isset($_POST['password']) ) {
     $_SESSION['password'] = $password;
     if ( strlen($_SESSION['email']) < 1 || strlen($_SESSION['password']) < 1 ) {
         $_SESSION['error'] = "Email and password are required";
+        error_log("Login fail both email:".$_SESSION['email']." and password:".$_SESSION['password']." are required");
         header("Location: login.php");
         return;
     } elseif (!filter_var($_SESSION['email'], FILTER_VALIDATE_EMAIL)) {
         $_SESSION['error'] = "Email must have an at-sign (@)";
+        error_log("Login fail ".$_SESSION['email']." does not contain an at-sign (@)");
         header("Location: login.php");
         return;
     } else {
@@ -67,7 +69,7 @@ if ( isset($_SESSION['error']) ) {
   <?php echo 'value="' . htmlentities($password) . '"';
 ?>
     /></p>
-<p><input type="submit" value="Login"/>
+<p><input type="submit" name="login" value="Log In"/>
 <input type="submit" name="cancel" value="Cancel">
 </p>
 </form>
